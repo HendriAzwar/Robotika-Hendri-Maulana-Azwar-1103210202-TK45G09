@@ -1,0 +1,28 @@
+[1.380s] Invoking command in '/home/hendriazwar/ros2_ws/src/my_python_package': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/hendriazwar/ros2_ws/build/my_python_package/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/hendriazwar/ros2_ws/install/my_python_package/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/my_python_package build --build-base /home/hendriazwar/ros2_ws/build/my_python_package/build install --record /home/hendriazwar/ros2_ws/build/my_python_package/install.log --single-version-externally-managed
+[1.702s] running egg_info
+[1.702s] creating ../../build/my_python_package/my_python_package.egg-info
+[1.718s] writing ../../build/my_python_package/my_python_package.egg-info/PKG-INFO
+[1.720s] writing dependency_links to ../../build/my_python_package/my_python_package.egg-info/dependency_links.txt
+[1.722s] writing entry points to ../../build/my_python_package/my_python_package.egg-info/entry_points.txt
+[1.723s] writing requirements to ../../build/my_python_package/my_python_package.egg-info/requires.txt
+[1.724s] writing top-level names to ../../build/my_python_package/my_python_package.egg-info/top_level.txt
+[1.724s] writing manifest file '../../build/my_python_package/my_python_package.egg-info/SOURCES.txt'
+[1.748s] reading manifest file '../../build/my_python_package/my_python_package.egg-info/SOURCES.txt'
+[1.749s] writing manifest file '../../build/my_python_package/my_python_package.egg-info/SOURCES.txt'
+[1.749s] running build
+[1.750s] running build_py
+[1.751s] creating /home/hendriazwar/ros2_ws/build/my_python_package/build
+[1.751s] creating /home/hendriazwar/ros2_ws/build/my_python_package/build/lib
+[1.752s] creating /home/hendriazwar/ros2_ws/build/my_python_package/build/lib/my_python_package
+[1.753s] copying my_python_package/simple_node.py -> /home/hendriazwar/ros2_ws/build/my_python_package/build/lib/my_python_package
+[1.753s] running install
+[1.759s] running install_lib
+[1.776s] creating /home/hendriazwar/ros2_ws/install/my_python_package/lib/python3.12/site-packages/my_python_package
+[1.776s] copying /home/hendriazwar/ros2_ws/build/my_python_package/build/lib/my_python_package/simple_node.py -> /home/hendriazwar/ros2_ws/install/my_python_package/lib/python3.12/site-packages/my_python_package
+[1.776s] byte-compiling /home/hendriazwar/ros2_ws/install/my_python_package/lib/python3.12/site-packages/my_python_package/simple_node.py to simple_node.cpython-312.pyc
+[1.778s] running install_egg_info
+[1.794s] Copying ../../build/my_python_package/my_python_package.egg-info to /home/hendriazwar/ros2_ws/install/my_python_package/lib/python3.12/site-packages/my_python_package-0.0.0-py3.12.egg-info
+[1.801s] running install_scripts
+[1.950s] Installing simple_node script to /home/hendriazwar/ros2_ws/install/my_python_package/lib/my_python_package
+[1.959s] writing list of installed files to '/home/hendriazwar/ros2_ws/build/my_python_package/install.log'
+[2.014s] Invoked command in '/home/hendriazwar/ros2_ws/src/my_python_package' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/hendriazwar/ros2_ws/build/my_python_package/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/hendriazwar/ros2_ws/install/my_python_package/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/my_python_package build --build-base /home/hendriazwar/ros2_ws/build/my_python_package/build install --record /home/hendriazwar/ros2_ws/build/my_python_package/install.log --single-version-externally-managed
