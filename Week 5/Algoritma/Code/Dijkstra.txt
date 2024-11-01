@@ -1,0 +1,54 @@
+import heapq
+
+def dijkstra(graf, mulai, tujuan):
+    # Inisialisasi jarak dari titik mulai ke semua node lainnya
+    jarak = {node: float('inf') for node in graf}
+    jarak[mulai] = 0  # Jarak ke titik awal adalah 0
+    # Buat heap untuk memprioritaskan node dengan jarak terdekat
+    heap = [(0, mulai)]
+    # Untuk melacak jalur
+    jalur = {node: None for node in graf}
+
+    while heap:
+        jarak_sementara, node_sekarang = heapq.heappop(heap)
+
+        # Jika node sekarang adalah tujuan, hentikan loop
+        if node_sekarang == tujuan:
+            break
+
+        # Periksa semua tetangga dari node_sekarang
+        for tetangga, jarak_ke_tetangga in graf[node_sekarang].items():
+            # Hitung jarak baru ke tetangga
+            jarak_baru = jarak_sementara + jarak_ke_tetangga
+            # Jika jarak baru lebih kecil, update jarak dan tambahkan ke heap
+            if jarak_baru < jarak[tetangga]:
+                jarak[tetangga] = jarak_baru
+                jalur[tetangga] = node_sekarang
+                heapq.heappush(heap, (jarak_baru, tetangga))
+
+    # Rekonstruksi jalur dari titik tujuan ke titik mulai
+    jalur_terpendek = []
+    node = tujuan
+    while node is not None:
+        jalur_terpendek.append(node)
+        node = jalur[node]
+    jalur_terpendek.reverse()  # Urutkan dari mulai ke tujuan
+
+    return jalur_terpendek, jarak[tujuan]
+
+# Contoh graf yang direpresentasikan sebagai dictionary
+graf = {
+    'A': {'B': 5, 'C': 2},
+    'B': {'A': 5, 'D': 4, 'E': 2},
+    'C': {'A': 2, 'F': 3},
+    'D': {'B': 4, 'E': 1},
+    'E': {'B': 2, 'D': 1, 'F': 3},
+    'F': {'C': 3, 'E': 3}
+}
+
+# Menggunakan algoritma Dijkstra
+mulai = 'A'
+tujuan = 'F'
+jalur_terpendek, biaya_total = dijkstra(graf, mulai, tujuan)
+print("Jalur terpendek:", " -> ".join(jalur_terpendek))
+print("Biaya total:", biaya_total)

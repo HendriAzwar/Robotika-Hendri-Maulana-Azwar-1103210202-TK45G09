@@ -1,0 +1,67 @@
+import numpy as np
+
+class CellDecomposition:
+    def __init__(self, grid):
+        self.grid = grid
+        self.rows = len(grid)
+        self.cols = len(grid[0])
+        self.visited = np.zeros((self.rows, self.cols), dtype=bool)
+        self.path = []
+
+    def is_safe(self, x, y):
+        """Memeriksa apakah cell (x, y) aman untuk dikunjungi."""
+        return (0 <= x < self.rows) and (0 <= y < self.cols) and (self.grid[x][y] == 0 and not self.visited[x][y])
+
+    def dfs(self, x, y, dest_x, dest_y):
+        """Metode DFS untuk mencari jalur dari titik (x, y) ke titik tujuan (dest_x, dest_y)."""
+        if x == dest_x and y == dest_y:
+            self.path.append((x, y))
+            return True
+
+        if self.is_safe(x, y):
+            self.visited[x][y] = True
+            self.path.append((x, y))
+
+            # Gerakan ke arah atas, bawah, kiri, dan kanan
+            for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+                if self.dfs(x + dx, y + dy, dest_x, dest_y):
+                    return True
+
+            # Backtrack jika tidak ada jalur yang ditemukan
+            self.path.pop()
+
+        return False
+
+    def find_path(self, start, end):
+        """Menemukan jalur dari titik awal ke titik tujuan."""
+        start_x, start_y = start
+        dest_x, dest_y = end
+        if self.dfs(start_x, start_y, dest_x, dest_y):
+            return self.path
+        else:
+            return "Jalur tidak ditemukan!"
+
+# Contoh penggunaan
+if __name__ == "__main__":
+    # 0: Cell bebas rintangan, 1: Cell dengan rintangan
+    grid = [
+        [0, 0, 1, 0, 0],
+        [0, 1, 1, 0, 1],
+        [0, 0, 0, 0, 0],
+        [1, 1, 1, 1, 0],
+        [0, 0, 0, 0, 0]
+    ]
+
+    # Inisialisasi objek CellDecomposition
+    cell_decomposition = CellDecomposition(grid)
+
+    # Tentukan titik awal dan tujuan
+    start = (0, 0)  # Titik awal (baris, kolom)
+    end = (4, 4)    # Titik tujuan (baris, kolom)
+
+    # Temukan jalur
+    path = cell_decomposition.find_path(start, end)
+
+    # Tampilkan hasil
+    print("Jalur yang ditempuh robot dari titik awal ke titik tujuan:")
+    print(path)

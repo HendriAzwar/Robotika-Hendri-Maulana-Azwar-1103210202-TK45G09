@@ -1,0 +1,59 @@
+import heapq
+
+# Fungsi heuristic menggunakan jarak Manhattan
+def heuristic(a, b):
+    return abs(a[0] - b[0]) + abs(a[1] - b[1])
+
+# Fungsi A* untuk mencari jalur terpendek
+def a_star(grid, start, goal):
+    rows, cols = len(grid), len(grid[0])
+    open_set = []
+    heapq.heappush(open_set, (0, start))
+
+    came_from = {}
+    g_score = {start: 0}
+    f_score = {start: heuristic(start, goal)}
+
+    while open_set:
+        _, current = heapq.heappop(open_set)
+
+        if current == goal:
+            path = []
+            while current in came_from:
+                path.append(current)
+                current = came_from[current]
+            path.append(start)
+            return path[::-1]  # Mengembalikan jalur terbalik, dari start ke goal
+
+        # Periksa tetangga-tetangga
+        for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:  # atas, bawah, kiri, kanan
+            neighbor = (current[0] + dx, current[1] + dy)
+
+            if 0 <= neighbor[0] < rows and 0 <= neighbor[1] < cols and grid[neighbor[0]][neighbor[1]] == 0:
+                tentative_g_score = g_score[current] + 1  # Tambah 1 untuk setiap langkah
+
+                if neighbor not in g_score or tentative_g_score < g_score[neighbor]:
+                    came_from[neighbor] = current
+                    g_score[neighbor] = tentative_g_score
+                    f_score[neighbor] = tentative_g_score + heuristic(neighbor, goal)
+                    heapq.heappush(open_set, (f_score[neighbor], neighbor))
+
+    return None  # Jika tidak ada jalur ditemukan
+
+# Contoh penggunaan
+grid = [
+    [0, 1, 0, 0, 0],
+    [0, 1, 0, 1, 0],
+    [0, 0, 0, 1, 0],
+    [1, 1, 0, 1, 0],
+    [0, 0, 0, 0, 0]
+]
+
+start = (0, 0)  # Titik awal
+goal = (4, 4)   # Titik tujuan
+
+path = a_star(grid, start, goal)
+if path:
+    print("Jalur terpendek ditemukan:", path)
+else:
+    print("Tidak ada jalur yang tersedia dari titik awal ke tujuan.")
