@@ -1,0 +1,4 @@
+num_nodes: 100
+x_max: 20
+y_max: 20
+threshold: 5

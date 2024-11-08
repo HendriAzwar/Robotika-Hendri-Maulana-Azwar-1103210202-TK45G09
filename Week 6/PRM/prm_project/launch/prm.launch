@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="prm_project" type="prm.py" name="prm_node" output="screen" />
+    <param name="~params_file" value="$(find prm_project)/params.yaml" />
+</launch>
