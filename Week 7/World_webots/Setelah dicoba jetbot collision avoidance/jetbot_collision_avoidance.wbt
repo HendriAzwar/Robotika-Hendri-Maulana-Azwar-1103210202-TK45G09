@@ -1,0 +1,331 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/school_furniture/protos/Blackboard.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/school_furniture/protos/Book.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/cabinet/protos/Cabinet.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/lights/protos/CeilingLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/school_furniture/protos/Clock.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/tables/protos/Desk.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/apartment_structure/protos/Door.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/apartment_structure/protos/DoorLever.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/nvidia/jetbot/protos/JetBot.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/nvidia/jetbot/protos/JetBotRaspberryPiCamera.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/computers/protos/Laptop.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/plants/protos/PottedTree.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Roughcast.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/tools/protos/Screwdriver.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/tables/protos/Table.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/VarnishedPine.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/apartment_structure/protos/Window.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/chairs/protos/WoodenChair.proto"
+
+WorldInfo {
+  info [
+    "JetBot collision avoidance performed using pre-trained PyTorch neural network."
+  ]
+  title "JetBot Collision Avoidance"
+  contactProperties [
+    ContactProperties {
+      material1 "jetbot rear wheel"
+      coulombFriction [
+        0
+      ]
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.21112871873140113 0.4814901551915096 -0.8506420484436993 0.8023299930103583
+  position -3.02476974325366 2.9336977564122044 2.1674444220558904
+}
+TexturedBackground {
+  texture "empty_office"
+}
+CeilingLight {
+  rotation 0 0 1 1.570796326797731
+  pointLightRadius 0.1
+  castShadows FALSE
+}
+SpotLight {
+  attenuation 0 0 1
+  beamWidth 0.7
+  cutOffAngle 0.9
+  direction 0 -1 0
+  intensity 0.8
+  location 0.45 1.6 0
+  radius 4
+  castShadows TRUE
+}
+Floor {
+  rotation 0 0 1 1.570796326797731
+  size 4 5.2
+  tileSize 1 1
+  appearance PBRAppearance {
+    baseColorMap ImageTexture {
+      url [
+        "https://raw.githubusercontent.com/cyberbotics/webots/R2021b/projects/default/worlds/textures/square_block_parquetry.jpg"
+      ]
+    }
+    roughness 1
+    metalness 0
+  }
+}
+DEF CEILING Solid {
+  translation 0 0 2.4
+  rotation -1 0 0 3.141591633975729
+  children [
+    Shape {
+      appearance Roughcast {
+      }
+      geometry Plane {
+        size 5.2 4
+      }
+      castShadows FALSE
+    }
+  ]
+  name "ceiling"
+}
+DEF DOOR_WALL Solid {
+  translation -2.6 -0.786 1.2
+  rotation 0.5773489358556708 -0.5773509358554485 0.5773509358554485 -2.094395307179586
+  children [
+    Shape {
+      appearance DEF WALL_APPEARANCE Roughcast {
+        colorOverride 0.720668 0.883192 0.940002
+        textureTransform TextureTransform {
+          scale 5 4
+        }
+      }
+      geometry DEF DOOR_WALL_SHAPE Plane {
+        size 2.43 2.4
+      }
+      castShadows FALSE
+    }
+  ]
+  name "wall"
+  boundingObject USE DOOR_WALL_SHAPE
+}
+DEF DOOR_WALL Solid {
+  translation -2.6 1.714 1.2
+  rotation 0.5773489358556708 -0.5773509358554485 0.5773509358554485 -2.094395307179586
+  children [
+    Shape {
+      appearance USE WALL_APPEARANCE
+      geometry DEF DOOR_WALL_SHAPE Plane {
+        size 0.58 2.4
+      }
+      castShadows FALSE
+    }
+  ]
+  name "wall(5)"
+  boundingObject USE DOOR_WALL_SHAPE
+}
+Door {
+  translation -2.59397 0.927 0.023
+  size 0.001 1 2.38
+  canBeOpen FALSE
+  doorThickness 0.02
+  frameSize 0.05 0.05 0.04
+  wallAppearance USE WALL_APPEARANCE
+  doorHandle DoorLever {
+    hasStaticParent TRUE
+  }
+  castShadows FALSE
+}
+DEF BACK_WALL Solid {
+  translation 2.6 0 1.2
+  rotation 0.5773489358556708 0.5773509358554485 -0.5773509358554485 -2.094395307179586
+  children [
+    DEF WALL Shape {
+      appearance USE WALL_APPEARANCE
+      geometry Plane {
+        size 4 2.4
+      }
+      castShadows FALSE
+    }
+  ]
+  name "wall(1)"
+  boundingObject USE WALL
+}
+DEF WINDOW_WALL Solid {
+  translation 1.6 -2 1.2
+  rotation 1 0 0 -1.5707953071795862
+  children [
+    DEF WALL Shape {
+      appearance USE WALL_APPEARANCE
+      geometry Plane {
+        size 2.008 2.4
+      }
+      castShadows FALSE
+    }
+  ]
+  name "wall(2)"
+  boundingObject USE WALL
+}
+DEF WINDOW_WALL Solid {
+  translation -2.185 -2 1.2
+  rotation 1 0 0 -1.5707953071795862
+  children [
+    DEF WALL Shape {
+      appearance USE WALL_APPEARANCE
+      geometry Plane {
+        size 0.82 2.4
+      }
+      castShadows FALSE
+    }
+  ]
+  name "wall(3)"
+  boundingObject USE WALL
+}
+DEF BLACKBOARD_WALL Solid {
+  translation 0 2 1.2
+  rotation 0 0.7071067811862364 -0.7071067811862364 3.14159
+  children [
+    DEF WALL Shape {
+      appearance USE WALL_APPEARANCE
+      geometry Plane {
+        size 5.2 2.4
+      }
+      castShadows FALSE
+    }
+  ]
+  name "wall(4)"
+  boundingObject USE WALL
+}
+Window {
+  translation -1.18 -2.005 0
+  rotation 0 0 1 1.570796326797731
+  size 0.01 1.2 2.4
+  windowSillSize 0.1 0.04
+  wallAppearance USE WALL_APPEARANCE
+  castShadows FALSE
+}
+Window {
+  translation 0.02 -2.005 0
+  rotation 0 0 1 1.570796326797731
+  name "window(1)"
+  size 0.01 1.2 2.4
+  windowSillSize 0.1 0.04
+  wallAppearance USE WALL_APPEARANCE
+  castShadows FALSE
+}
+Cabinet {
+  hidden position_6_0 6.721029195253973e-05
+  hidden translation_7 -2.3405984154850303e-05 -7.865612605684191e-10 0
+  hidden rotation_7 0 0 1 6.721028969207903e-05
+  hidden position_10_0 -4.8974014187688814e-05
+  hidden translation_11 -1.2425931744804179e-05 3.042737173331034e-10 0
+  hidden rotation_11 0 0 -1 4.8974012292929785e-05
+  translation 2.59145 1.34553 2.77953e-07
+  rotation 0 0 1 3.14159
+  columnsWidths [
+    0.7, 0.34, 0.17
+  ]
+}
+Cabinet {
+  hidden position_6_0 -0.018660072609454736
+  hidden translation_7 0.004641423694678462 -4.330590817128166e-05 0
+  hidden rotation_7 0 0 -1 0.018660072609459333
+  hidden position_10_0 -4.801429164382855e-05
+  hidden translation_11 -1.1943555041813287e-05 2.8673083352082074e-10 0
+  hidden rotation_11 0 0 -1 4.8014288430590363e-05
+  translation 2.59145 0.17553 -2.56223e-06
+  rotation 0 0 1 3.14159
+  name "cabinet(1)"
+  rowsHeights [
+    1.44
+  ]
+  columnsWidths [
+    0.5, 0.5
+  ]
+  layout [
+    "RightSidedDoor (1, 1, 1, 1, 1.5)"
+    "LeftSidedDoor (2, 1,1,1, 1.5)"
+  ]
+}
+Book {
+  translation 2.20088 1.8117000530717962 0.2898825579530177
+  rotation -0.5773502691896257 0.577350269189626 0.5773502691896256 2.094395102393195
+}
+Screwdriver {
+  translation 2.227545186674188 1.4783571075736295 0.4918495878214653
+  rotation 0.0010262623102101505 0.0024776235408057634 -0.9999964040771651 0.7853986596198355
+}
+Blackboard {
+  translation -0.117255 1.98728 1.25
+  rotation 0 0 1 -1.5707953071795862
+  castShadows FALSE
+}
+Clock {
+  translation -2.57596 -0.897365 1.96
+}
+PottedTree {
+  translation 2.03144 -1.2296 0
+  rotation 0 0 1 1.570796326797731
+}
+Desk {
+  translation -1.71246 -0.75833 -3.64153e-14
+  rotation 0 0 1 1.570798505049501
+}
+WoodenChair {
+  translation -1.76157 -1.41101 6.48371e-14
+  rotation 0 0 1 1.8326
+}
+WoodenChair {
+  translation -0.851899 -1.43187 1.77636e-15
+  rotation 0 0 1 2.61799
+  name "wooden chair(1)"
+}
+Laptop {
+  hidden position_0_0 0.0007053291702855402
+  hidden translation_1 -0.1000816658181416 -0.014 0.1299679492536984
+  hidden rotation_1 0.5774426261880313 -0.5775426033433788 -0.5770654683694236 2.094867309805086
+  translation -1.5248903245218128 -0.7625335529408198 0.7088660729720186
+  rotation 0.0012669614673058206 0.0007475983281700796 0.9999989179521047 -2.094398138219783
+  controller ""
+}
+Table {
+  translation 0.411788 0.19985 1.24345e-14
+  size 1 1.8 0.61
+  feetSize 0.05 0.4
+  feetPadding 0.1
+  trayAppearance PBRAppearance {
+    baseColorMap ImageTexture {
+      url [
+        "textures/table_top.jpg"
+      ]
+    }
+    roughness 1
+    metalness 0
+    textureTransform TextureTransform {
+      scale 1 1.8
+    }
+  }
+  legAppearance VarnishedPine {
+    colorOverride 1 1 1
+  }
+}
+DEF JETBOT JetBot {
+  hidden position_0_0 1535.1746242895356
+  hidden position_0_1 427.34686897215283
+  hidden linearVelocity_0 1.1785586889468916e-10 -4.660373437391473e-11 -1.4524774943101788e-11
+  hidden angularVelocity_0 1.4857393922540048e-09 3.757248599480084e-09 1.482763293648513e-12
+  hidden translation_6 0.030000463735381143 0.0521500000157608 0.029999734832764212
+  hidden rotation_6 0.652801055745074 0.652798657072189 0.38432368511823906 2.4077557119112187
+  hidden linearVelocity_6 4.5017197151532734e-07 -1.552760602896677e-07 9.67429845244346e-07
+  hidden angularVelocity_6 0.6513240607397285 1.8909724539465358 0.0004030606122779259
+  hidden translation_7 0.030000055595985023 -0.05949999998422251 0.03000053774878188
+  hidden rotation_7 0.045072867849760195 0.04507286599435281 0.9979663688395783 1.5728320202644073
+  hidden linearVelocity_7 1.0219323067779502e-06 -3.5197431459556064e-07 -1.4973634247187976e-07
+  hidden angularVelocity_7 -0.6513240592786201 -1.8909724459131168 -0.00040306060930326654
+  translation 0.7146062614401049 -0.7876512112303068 0.09854970682269246
+  rotation 0.16509656624458835 0.9862774013754243 0.00010653819210017694 -3.1415404364929156
+  controller "jetbot_collision_avoidance"
+  supervisor TRUE
+  cameraSlot JetBotRaspberryPiCamera {
+    rotation 0 1 0 0.316799
+    width 224
+    height 224
+  }
+}
