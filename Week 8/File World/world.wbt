@@ -1,0 +1,66 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.28468193074240566 0.10728559761514798 0.9525996004897003 2.452266234553221
+  position 0.5754592711799605 -0.45149818509406414 0.43012765583364887
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorAppearance PBRAppearance {
+    roughness 1
+    roughnessMap ImageTexture {
+      url [
+        "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/textures/parquetry/chequered_parquetry_roughness.jpg"
+      ]
+    }
+    metalness 0
+    normalMap ImageTexture {
+      url [
+        "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/textures/parquetry/chequered_parquetry_normal.jpg"
+      ]
+    }
+    occlusionMap ImageTexture {
+      url [
+        "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/textures/parquetry/chequered_parquetry_occlusion.jpg"
+      ]
+    }
+  }
+}
+Transform {
+  scale 0.01 0.01 0.01
+  children [
+    Shape {
+      geometry Mesh {
+        url [
+          "C:/Users/acer/Downloads/Line follower circle.stl"
+        ]
+      }
+    }
+  ]
+}
+E-puck {
+  translation 0 -0.31 0
+  controller "my_controller_line_cplus"
+  groundSensorsSlot [
+    DistanceSensor {
+      translation 0 0.01 0.01
+      rotation 0 1 0 1.5708
+      name "ir0"
+    }
+    DistanceSensor {
+      translation 0 -0.01 0.01
+      rotation 0 1 0 1.5708
+      name "ir1"
+    }
+  ]
+}
