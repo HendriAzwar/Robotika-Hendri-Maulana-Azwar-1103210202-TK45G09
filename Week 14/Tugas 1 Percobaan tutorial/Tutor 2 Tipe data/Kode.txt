@@ -1,0 +1,46 @@
+struct Student {
+    name : String,
+    level : u8,
+    remote : bool
+}
+
+struct Grades(char,char,char, f32);
+
+fn main() {
+    println!("Hello, {} {}!", "Hendri", "Azwar");
+
+    let mut age = 21;
+    let birth_year=2003;
+
+    println!("I am {} years old", age);
+
+    let birth_year=birth_year-1;
+
+    age = 22;
+
+    println!("I am now {} years old", age);
+    println!("I was born in {}", birth_year);
+
+    let float: f32 = 4.0;
+
+    println!("1 x 2 = {}", 1*2);
+    let is_bigger_num = 2>4;
+    println!("Is 2 > 4 : {}", is_bigger_num);
+
+    let my_cat = ("Bromski", 10, true);
+    println!("My cat's name was {}, he was {} years old, is he alive? {}", my_cat.0, my_cat.1, my_cat.2);
+
+    let student_1 = Student{
+        name: String::from("Hendri Azwar"),
+        remote: false,
+        level: 7
+    };
+
+    let grades = Grades('A','B','C', 3.0);
+
+    println!("{}, is a level {} programmer. Does he work remotely: {}",
+        student_1.name, student_1.level, student_1.remote);
+
+    println!("{},{},{},GPA = {}", grades.0, grades.1, grades.2, grades.3);
+
+}
